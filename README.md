@@ -1,27 +1,3 @@
-# BOX Player - Android
-
-## كيف تبني الـ APK (5 خطوات بس)
-
-### 1. حمّل Android Studio
-https://developer.android.com/studio (مجاني)
-
-### 2. افتح المشروع
-- افتح Android Studio
-- اختر "Open an existing project"
-- اختر مجلد BOXPlayer هذا
-
-### 3. انتظر التحميل
-Android Studio حيحمل المكتبات تلقائياً (يحتاج إنترنت، دقيقتين تقريباً)
-
-### 4. بناء الـ APK
-- من القائمة العلوية: Build → Build Bundle(s) / APK(s) → Build APK(s)
-- انتظر دقيقة
-
-### 5. موقع الـ APK
-```
-BOXPlayer/app/build/outputs/apk/debug/app-debug.apk
-```
-انقله للجوال وثبّته ✅
 
 ---
 
