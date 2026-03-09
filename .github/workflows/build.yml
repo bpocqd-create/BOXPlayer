@@ -1,3 +1,4 @@
+
 name: Build BOX Player APK
 
 on:
@@ -25,30 +26,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Create Gradle wrapper manually
-        run: |
-          mkdir -p gradle/wrapper
-          cat > gradle/wrapper/gradle-wrapper.properties << 'EOF'
-          distributionBase=GRADLE_USER_HOME
-          distributionPath=wrapper/dists
-          distributionUrl=https\://services.gradle.org/distributions/gradle-8.6-bin.zip
-          networkTimeout=10000
-          validateDistributionUrl=true
-          zipStoreBase=GRADLE_USER_HOME
-          zipStorePath=wrapper/dists
-          EOF
-          curl -sL https://raw.githubusercontent.com/gradle/gradle/v8.6.0/gradle/wrapper/gradle-wrapper.jar -o gradle/wrapper/gradle-wrapper.jar
-          cat > gradlew << 'GRADLEW'
-          #!/bin/sh
-          exec java -jar "$(dirname "$0")/gradle/wrapper/gradle-wrapper.jar" "$@"
-          GRADLEW
-          chmod +x gradlew
+      - name: Install Gradle 8.6 directly
+        uses: gradle/actions/setup-gradle@v3
+        with:
+          gradle-version: '8.6'
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon
+        run: gradle assembleDebug --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
